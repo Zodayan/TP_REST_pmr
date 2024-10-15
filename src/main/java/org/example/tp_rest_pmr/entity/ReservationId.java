@@ -1,4 +1,4 @@
-package org.example.tp_rest_pmr;
+package org.example.tp_rest_pmr.entity;
 
 import lombok.*;
 
