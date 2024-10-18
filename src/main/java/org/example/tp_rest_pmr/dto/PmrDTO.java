@@ -4,8 +4,8 @@ import lombok.*;
 
 @Getter @Setter @NoArgsConstructor
 public class PmrDTO {
-    private String name;
-    private int quantity;
+    private String nom;
+    private int quantite;
     private String description;
     private String point_geo;
 

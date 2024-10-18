@@ -21,7 +21,7 @@ public class PmrEntity {
     private int id;
 
     @Column(name = "nom", nullable = false, length = 100)
-    private String name;
+    private String nom;
 
     @Column(name = "quantite", nullable = false)
     private int quantite;
