@@ -3,6 +3,8 @@ package org.example.tp_rest_pmr.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Builder
 @Getter
@@ -24,15 +26,15 @@ public class PmrEntity {
     @Column(name = "quantite", nullable = false)
     private int quantite;
 
-    @Column(name = "description", nullable = true, length = 100)
+    @Column(name = "description", length = 100)
     private String description;
 
     @Column(name = "point_geo", nullable = false, length = 100)
     private String point_geo;
 
-    @OneToOne(mappedBy = "pmr")
-    private ReservationEntity reservation;
+    @OneToMany(mappedBy = "pmr_id")
+    private Set<ReservationEntity> pmrs;
 
 
 
-};
+}
