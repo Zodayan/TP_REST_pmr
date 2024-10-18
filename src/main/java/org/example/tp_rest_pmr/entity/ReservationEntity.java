@@ -14,9 +14,8 @@ import lombok.*;
 @Table(name = "reservation")
 public class ReservationEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation", nullable = false)
-    private int reservationId;
+    private int reservation;
 
     @EmbeddedId
     private EmbeddedIdReservation id;

@@ -14,6 +14,7 @@ import lombok.*;
 @ToString
 @Embeddable
 public class EmbeddedIdReservation {
+
     @Column(name = "pmr_id", nullable = false)
     private int pmr_id;
 
