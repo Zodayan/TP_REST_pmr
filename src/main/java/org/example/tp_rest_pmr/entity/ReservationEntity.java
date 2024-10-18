@@ -3,6 +3,7 @@ package org.example.tp_rest_pmr.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Builder
 @Getter
@@ -13,25 +14,17 @@ import lombok.*;
 @Table(name = "reservation")
 public class ReservationEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation", nullable = false)
-    private int reservationId;
+    private int reservation;
 
-    @Id
-    @Column(name = "pmr_id", nullable = false)
-    private int pmr_id;
+    @EmbeddedId
+    private EmbeddedIdReservation id;
 
-    @Id
-    @Column(name = "utilisateur_id", nullable = false)
-    private int utilisateur_id;
-
-    @MapsId(value = "pmr_id")
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "pmr_id")
-    private PmrEntity pmr;
+    private PmrEntity pmr_id;
 
-    @MapsId(value = "utilisateur_id")
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "utilisateur_id")
-    private UtilisateurEntity utilisateur;
+    private UtilisateurEntity utilisateurs;
 }

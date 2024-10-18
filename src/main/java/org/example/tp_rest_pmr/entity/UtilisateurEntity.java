@@ -3,6 +3,8 @@ package org.example.tp_rest_pmr.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Builder
 @Getter
@@ -24,13 +26,16 @@ public class UtilisateurEntity
     @Column(name = "prenom", nullable = false)
     private String prenom;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "mail", nullable = false)
+    private String mail;
 
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "username", nullable = false)
     private String username;
+
+    @OneToMany(mappedBy = "utilisateur_id")
+    private Set<ReservationEntity> pmr;
 
 }
