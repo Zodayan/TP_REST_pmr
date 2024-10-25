@@ -2,12 +2,9 @@ package org.example.tp_rest_pmr.controller;
 
 import org.example.tp_rest_pmr.controller.pmr_controller_data.DataGetPmr;
 import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPostAddPmr;
-import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPostDeletePmr;
-import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPostUpdatePmr;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.tp_rest_pmr.controller.pmr_controller_data.DataDeletePmr;
+import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPutUpdatePmr;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PmrController
@@ -31,14 +28,14 @@ public class PmrController
         return "postAddPmr" + data;
     }
 
-    @PostMapping(value = "/pmr", params = "action=updatePmr")
-    public String postUpdatePmr(@RequestBody DataPostUpdatePmr data)
+    @PutMapping(value = "/pmr", params = "action=updatePmr")
+    public String putUpdatePmr(@RequestBody DataPutUpdatePmr data)
     {
         return "updatePmr" + data;
     }
 
-    @PostMapping(value = "/pmr", params = "action=deletePmr")
-    public String postDeletePmr(@RequestBody DataPostDeletePmr data)
+    @DeleteMapping(value = "/pmr", params = "action=deletePmr")
+    public String deletePmr(@RequestBody DataDeletePmr data)
     {
         return "deletePmr" + data;
     }

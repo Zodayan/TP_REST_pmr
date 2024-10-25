@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class DataPostDeleteReservation
+public class DataPutUpdateReservation
 {
     @NonNull
     private String nomUtilisateur;
@@ -20,4 +20,7 @@ public class DataPostDeleteReservation
 
     @NonNull
     private String descriptionPmr;
+
+    @NonNull
+    private Integer reservation;
 }

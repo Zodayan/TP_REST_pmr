@@ -2,8 +2,8 @@ package org.example.tp_rest_pmr.controller;
 
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataGetUtilisateur;
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPostAddUtilisateur;
-import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPostDeleteUtilisateur;
-import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPostUpdateUtilisateur;
+import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataDeleteUtilisateur;
+import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPutUpdateUtilisateur;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,14 +27,14 @@ public class UtilisateurController {
         return "addUtilisateur " + data;
     }
 
-    @PostMapping(value = "/utilisateur", params = "action=updateUtilisateur")
-    public String postUpdateUtilisateur(@RequestBody DataPostUpdateUtilisateur data)
+    @PutMapping(value = "/utilisateur", params = "action=updateUtilisateur")
+    public String putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
     {
         return "updateUtilisateur " + data;
     }
 
-    @PostMapping(value = "/utilisateur", params = "action=deleteUtilisateur")
-    public String postDeleteUtilisateur(@RequestBody DataPostDeleteUtilisateur data)
+    @DeleteMapping(value = "/utilisateur", params = "action=deleteUtilisateur")
+    public String deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
     {
         return "deleteUtilisateur" + data;
     }

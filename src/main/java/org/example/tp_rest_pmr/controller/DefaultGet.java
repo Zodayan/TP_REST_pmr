@@ -1,9 +1,9 @@
 package org.example.tp_rest_pmr.controller;
 
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostDeleteReservation;
+import org.example.tp_rest_pmr.controller.reservation_controller_data.DataDeleteReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataGetReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostAddReservation;
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostUpdateReservation;
+import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPutUpdateReservation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,13 +44,13 @@ public class DefaultGet {
         }
 
         @PostMapping(value = "/reservation", params = "action=updateReservation")
-        public String postUpdateReservation(@RequestBody DataPostUpdateReservation data)
+        public String postUpdateReservation(@RequestBody DataPutUpdateReservation data)
         {
             return "postUpdateReservation " + data;
         }
 
         @PostMapping(value = "/reservation", params = "action=deleteReservation")
-        public String postDeleteReservation(@RequestBody DataPostDeleteReservation data)
+        public String postDeleteReservation(@RequestBody DataDeleteReservation data)
         {
             return "postDeleteReservation" + data;
         }

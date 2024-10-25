@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class DataPostDeletePmr
+public class DataDeletePmr
 {
     @NonNull
     private String nom;

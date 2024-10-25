@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class DataPostDeleteUtilisateur
+public class DataPutUpdateUtilisateur
 {
     @NonNull
     private String nom;
@@ -17,4 +17,7 @@ public class DataPostDeleteUtilisateur
 
     @NonNull
     private String email;
+
+    @NonNull
+    private String username;
 }

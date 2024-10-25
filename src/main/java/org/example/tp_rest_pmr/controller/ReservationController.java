@@ -2,12 +2,9 @@ package org.example.tp_rest_pmr.controller;
 
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataGetReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostAddReservation;
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostDeleteReservation;
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostUpdateReservation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.tp_rest_pmr.controller.reservation_controller_data.DataDeleteReservation;
+import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPutUpdateReservation;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReservationController
@@ -30,15 +27,15 @@ public class ReservationController
         return "postAddReservation " + data;
     }
 
-    @PostMapping(value = "/reservation", params = "action=updateReservation")
-    public String postUpdateReservation(@RequestBody DataPostUpdateReservation data)
+    @PutMapping(value = "/reservation", params = "action=updateReservation")
+    public String putUpdateReservation(@RequestBody DataPutUpdateReservation data)
     {
-        return "postUpdateReservation " + data;
+        return "putUpdateReservation " + data;
     }
 
-    @PostMapping(value = "/reservation", params = "action=deleteReservation")
-    public String postDeleteReservation(@RequestBody DataPostDeleteReservation data)
+    @DeleteMapping(value = "/reservation", params = "action=deleteReservation")
+    public String deleteReservation(@RequestBody DataDeleteReservation data)
     {
-        return "postDeleteReservation" + data;
+        return "deleteReservation" + data;
     }
 }
