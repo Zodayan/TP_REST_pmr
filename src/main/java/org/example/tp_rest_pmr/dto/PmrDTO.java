@@ -3,6 +3,7 @@ package org.example.tp_rest_pmr.dto;
 import lombok.*;
 
 @Getter @Setter @NoArgsConstructor
+@AllArgsConstructor
 public class PmrDTO {
     private String nom;
     private int quantite;
