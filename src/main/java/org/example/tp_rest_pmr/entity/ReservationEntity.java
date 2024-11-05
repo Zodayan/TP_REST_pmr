@@ -14,11 +14,11 @@ import lombok.*;
 @Table(name = "reservation")
 public class ReservationEntity {
 
-    @Column(name = "reservation", nullable = false)
-    private int reservation;
-
     @EmbeddedId
     private EmbeddedIdReservation id;
+
+    @Column(name = "reservation", nullable = false)
+    private Integer reservation;
 
     @ManyToOne
     @JoinColumn(name = "pmr_id")
