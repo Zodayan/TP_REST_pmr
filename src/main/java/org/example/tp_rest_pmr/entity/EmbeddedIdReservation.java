@@ -18,8 +18,8 @@ import lombok.*;
 public class EmbeddedIdReservation {
 
     @Column(name = "pmr_id", nullable = false)
-    private Integer pmr;
+    private Integer pmr_id;
 
     @Column(name = "utilisateur_id", nullable = false)
-    private Integer utilisateur;
+    private Integer utilisateur_id;
 }

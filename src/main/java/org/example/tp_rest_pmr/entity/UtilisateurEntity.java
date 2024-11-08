@@ -36,7 +36,7 @@ public class UtilisateurEntity
     @Column(name = "username", nullable = false)
     private String username;
 
-    @OneToMany(mappedBy = "id.utilisateur")
+    @OneToMany(mappedBy = "utilisateur")
     private Set<ReservationEntity> reservations;
 
 }
