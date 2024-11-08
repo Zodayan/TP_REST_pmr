@@ -10,8 +10,6 @@ import lombok.*;
 public class DataGetPmr
 {
     @NonNull
-    private String nom;
+    private Integer id;
 
-    @NonNull
-    private String description;
 }
