@@ -21,10 +21,12 @@ public class ReservationEntity {
     private Integer reservation;
 
     @ManyToOne
+    @MapsId("pmr_id")
     @JoinColumn(name = "pmr_id")
-    private PmrEntity pmr_id;
+    private PmrEntity pmr;
 
     @ManyToOne
+    @MapsId("utilisateur_id")
     @JoinColumn(name = "utilisateur_id")
-    private UtilisateurEntity utilisateurs;
+    private UtilisateurEntity utilisateur;
 }

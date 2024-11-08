@@ -2,7 +2,10 @@ package org.example.tp_rest_pmr.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import lombok.*;
+
+import java.io.Serializable;
 
 
 // Permet de définir la clé multiple de la table

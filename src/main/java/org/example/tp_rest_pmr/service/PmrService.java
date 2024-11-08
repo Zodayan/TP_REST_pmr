@@ -34,7 +34,7 @@ public class PmrService {
 
     public PmrDTO getPmr(String nom, String description)
     {
-        pmrRepository.findPmrNomAndDescription(nom, description);
+        pmrRepository.findPmrByNomAndDescription(nom, description);
         return new PmrDTO();
     }
 
@@ -50,7 +50,7 @@ public class PmrService {
 
     public void updatePmr(String nom, Integer quantite, String description, String pointGeo)
     {
-        PmrEntity pmrEntity = pmrRepository.findPmrNomAndDescription(nom, description);
+        PmrEntity pmrEntity = pmrRepository.findPmrByNomAndDescription(nom, description);
         pmrEntity.setQuantite(quantite);
         pmrEntity.setDescription(description);
         pmrEntity.setPoint_geo(pointGeo);
@@ -59,7 +59,7 @@ public class PmrService {
 
     public void deletePmr(String nom, String description)
     {
-        pmrRepository.findPmrNomAndDescription(nom, description);
-        pmrRepository.delete(pmrRepository.findPmrNomAndDescription(nom, description));
+        pmrRepository.findPmrByNomAndDescription(nom, description);
+        pmrRepository.delete(pmrRepository.findPmrByNomAndDescription(nom, description));
     }
 }

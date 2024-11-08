@@ -9,6 +9,7 @@ import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Builder
 @Getter
@@ -23,7 +24,7 @@ public class UtilisateurService
     {
         this.utilisateurRepository = utilisateurRepository;
     }
-    
+
     public Set<UtilisateurDTO> getAllUtilisateurs()
     {
         utilisateurRepository.findAll();
@@ -54,7 +55,7 @@ public class UtilisateurService
         utilisateurToUpdate.setMail(email);
         utilisateurToUpdate.setUsername(username);
         utilisateurToUpdate.setPassword(password);
-        utilisateurRepository.updateUtilisateur(utilisateurToUpdate);
+        utilisateurRepository.save(utilisateurToUpdate);
     }
 
     public void deleteUtilisateurByNomAndPrenomAndMail(String nom, String prenom, String email)
