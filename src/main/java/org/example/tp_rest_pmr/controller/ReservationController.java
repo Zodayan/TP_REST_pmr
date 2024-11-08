@@ -4,7 +4,6 @@ import org.example.tp_rest_pmr.controller.reservation_controller_data.DataGetRes
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostAddReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataDeleteReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPutUpdateReservation;
-import org.example.tp_rest_pmr.repository.ReservationRepository;
 import org.example.tp_rest_pmr.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +19,10 @@ public class ReservationController
         this.reservationService = reservationService;
     }
 
-    @GetMapping(value = "/reservation", params = "action=getAllReservation")
-    public String getAllReservation()
+    @GetMapping(value = "/reservation", params = "action=getAllReservations")
+    public String getAllReservations()
     {
-        return "getAllReservation";
+        return "getAllReservations";
     }
 
     @GetMapping(value = "/reservation", params = "action=getReservation")

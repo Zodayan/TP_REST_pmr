@@ -13,5 +13,4 @@ public interface UtilisateurRepository extends JpaRepository<UtilisateurEntity, 
 
     void deleteByNomAndPrenomAndMail(String nom, String prenom, String mail);
 
-    void updateUtilisateur(UtilisateurEntity utilisateur);
 }

@@ -20,6 +20,7 @@ public class UtilisateurEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @Column(name = "nom", nullable = false)
     private String nom;
 
@@ -35,7 +36,7 @@ public class UtilisateurEntity
     @Column(name = "username", nullable = false)
     private String username;
 
-    @OneToMany(mappedBy = "utilisateur_id")
-    private Set<ReservationEntity> pmr;
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<ReservationEntity> reservations;
 
 }
