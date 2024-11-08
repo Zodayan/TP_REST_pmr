@@ -22,30 +22,31 @@ public class ReservationController
     @GetMapping(value = "/reservation", params = "action=getAllReservations")
     public String getAllReservations()
     {
-        return "getAllReservations";
+        return reservationService.getAllReservations().toString();
     }
 
     @GetMapping(value = "/reservation", params = "action=getReservation")
     public String getReservation(DataGetReservation data)
     {
+        reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId());
         return "getReservation " + data;
     }
 
     @PostMapping(value = "/reservation", params = "action=addReservation")
-    public String postAddReservation(@RequestBody DataPostAddReservation data)
+    public void postAddReservation(@RequestBody DataPostAddReservation data)
     {
-        return "postAddReservation " + data;
+        reservationService.addReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
     }
 
     @PutMapping(value = "/reservation", params = "action=updateReservation")
-    public String putUpdateReservation(@RequestBody DataPutUpdateReservation data)
+    public void putUpdateReservation(@RequestBody DataPutUpdateReservation data)
     {
-        return "putUpdateReservation " + data;
+        reservationService.updateReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
     }
 
     @DeleteMapping(value = "/reservation", params = "action=deleteReservation")
-    public String deleteReservation(@RequestBody DataDeleteReservation data)
+    public void deleteReservation(@RequestBody DataDeleteReservation data)
     {
-        return "deleteReservation" + data;
+        reservationService.deleteReservation(data.getPmrId(), data.getUtilisateurId());
     }
 }

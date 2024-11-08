@@ -4,9 +4,14 @@ import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataGetUti
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPostAddUtilisateur;
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataDeleteUtilisateur;
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPutUpdateUtilisateur;
+import org.example.tp_rest_pmr.dto.UtilisateurDTO;
+import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 public class UtilisateurController {
@@ -41,14 +46,14 @@ public class UtilisateurController {
     @PutMapping(value = "/utilisateur", params = "action=updateUtilisateur")
     public String putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
     {
-        utilisateurService.updateUtilisateur(data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPrenom());
+        utilisateurService.updateUtilisateur(data.getId(), data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPrenom());
         return "Updated User";
     }
 
     @DeleteMapping(value = "/utilisateur", params = "action=deleteUtilisateur")
     public String deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
     {
-        utilisateurService.deleteUtilisateurByNomAndPrenomAndMail(data.getNom(), data.getPrenom(), data.getEmail());
+        utilisateurService.deleteUtilisateur(data.getId());
         return "User deleted";
     }
 }

@@ -17,14 +17,5 @@ public class DataPostAddReservation
     private Integer utilisateurId;
 
     @NonNull
-    private String nomUtilisateur;
-
-    @NonNull
-    private String prenomUtilisateur;
-
-    @NonNull
-    private String nomPmr;
-
-    @NonNull
-    private String descriptionPmr;
+    private Integer reservation;
 }

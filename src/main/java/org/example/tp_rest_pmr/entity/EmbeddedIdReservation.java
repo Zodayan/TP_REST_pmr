@@ -11,26 +11,15 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Embeddable
 public class EmbeddedIdReservation {
 
-    @ManyToOne
-    @JoinColumn(name = "pmr_id")
-    private PmrEntity pmr;
-
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    private UtilisateurEntity utilisateur;
-
-    /*
     @Column(name = "pmr_id", nullable = false)
-    private Integer pmr_id;
+    private Integer pmr;
 
     @Column(name = "utilisateur_id", nullable = false)
-    private Integer utilisateur_id;
-
-     */
+    private Integer utilisateur;
 }

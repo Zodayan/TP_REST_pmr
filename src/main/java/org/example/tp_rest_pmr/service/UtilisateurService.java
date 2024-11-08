@@ -36,7 +36,7 @@ public class UtilisateurService
 
         return new UtilisateurDTO();
     }
-    
+
     public void addUtilisateur(String nom, String prenom, String email, String username, String password)
     {
         UtilisateurEntity utilisateur = new UtilisateurEntity();
@@ -48,18 +48,19 @@ public class UtilisateurService
         utilisateurRepository.save(utilisateur);
     }
 
-    public void updateUtilisateur(String nom, String prenom, String email, String username, String password)
+    public void updateUtilisateur(Integer id, String nom, String prenom, String email, String username, String password)
     {
-        UtilisateurEntity utilisateurToUpdate = utilisateurRepository.findByNomAndPrenom(nom, prenom);
+        UtilisateurEntity utilisateurToUpdate = utilisateurRepository.findById(id).get();
+        utilisateurToUpdate.setNom(nom);
+        utilisateurToUpdate.setPrenom(prenom);
         utilisateurToUpdate.setMail(email);
         utilisateurToUpdate.setUsername(username);
         utilisateurToUpdate.setPassword(password);
         utilisateurRepository.save(utilisateurToUpdate);
     }
 
-    public void deleteUtilisateurByNomAndPrenomAndMail(String nom, String prenom, String email)
+    public void deleteUtilisateur(Integer idUtilisateur)
     {
-        utilisateurRepository.findByNomAndPrenom(nom, prenom);
-        utilisateurRepository.deleteByNomAndPrenomAndMail(nom, prenom, email);
+        utilisateurRepository.delete(utilisateurRepository.findById(idUtilisateur).get());
     }
 }

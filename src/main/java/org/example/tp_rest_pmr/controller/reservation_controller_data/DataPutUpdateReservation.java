@@ -17,17 +17,5 @@ public class DataPutUpdateReservation
     private Integer utilisateurId;
 
     @NonNull
-    private String nomUtilisateur;
-
-    @NonNull
-    private String prenomUtilisateur;
-
-    @NonNull
-    private String nomPmr;
-
-    @NonNull
-    private String descriptionPmr;
-
-    @NonNull
     private Integer reservation;
 }

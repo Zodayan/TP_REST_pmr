@@ -9,8 +9,4 @@ public interface UtilisateurRepository extends JpaRepository<UtilisateurEntity, 
 {
     // Pas besoin de faire le code des méthodes, Spring s'occupe de le faire en
     // déduisant du nom de la méthode (voir "derived query methods Spring")
-    UtilisateurEntity findByNomAndPrenom(String nom, String prenom);
-
-    void deleteByNomAndPrenomAndMail(String nom, String prenom, String mail);
-
 }

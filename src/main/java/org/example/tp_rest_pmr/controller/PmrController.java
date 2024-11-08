@@ -35,7 +35,7 @@ public class PmrController
     @PostMapping(value = "/pmr", params = "action=addPmr")
     public String postAddPmr(@RequestBody DataPostAddPmr data)
     {
-        pmrService.addPmr(data.getId(), data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
+        pmrService.addPmr(data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
         return "Pmr Added";
     }
 

@@ -8,10 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataPostAddUtilisateur {
-
-    @NonNull
-    private Integer id;
-
     @NonNull
     private String nom;
 

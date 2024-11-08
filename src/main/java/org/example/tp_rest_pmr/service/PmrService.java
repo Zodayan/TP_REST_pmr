@@ -38,10 +38,9 @@ public class PmrService {
         return new PmrDTO();
     }
 
-    public void addPmr(Integer id,String nom, Integer quantite, String description, String pointGeo)
+    public void addPmr(String nom, Integer quantite, String description, String pointGeo)
     {
         PmrEntity pmrEntity = new PmrEntity();
-        pmrEntity.setId(id);
         pmrEntity.setNom(nom);
         pmrEntity.setQuantite(quantite);
         pmrEntity.setDescription(description);
