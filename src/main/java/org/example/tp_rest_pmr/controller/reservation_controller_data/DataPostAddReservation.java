@@ -1,6 +1,7 @@
 package org.example.tp_rest_pmr.controller.reservation_controller_data;
 
 import lombok.*;
+import org.example.tp_rest_pmr.entity.EmbeddedIdReservation;
 
 @Getter
 @Setter
@@ -9,6 +10,12 @@ import lombok.*;
 @ToString
 public class DataPostAddReservation
 {
+    @NonNull
+    private Integer pmrId;
+
+    @NonNull
+    private Integer utilisateurId;
+
     @NonNull
     private String nomUtilisateur;
 
