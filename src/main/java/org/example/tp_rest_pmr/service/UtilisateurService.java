@@ -9,7 +9,6 @@ import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Builder
 @Getter
@@ -28,7 +27,7 @@ public class UtilisateurService
     public Set<UtilisateurDTO> getAllUtilisateurs()
     {
         utilisateurRepository.findAll();
-        return new HashSet<UtilisateurDTO>();
+        return new HashSet<>();
     }
 
     public UtilisateurDTO getUtilisateur(Integer id)

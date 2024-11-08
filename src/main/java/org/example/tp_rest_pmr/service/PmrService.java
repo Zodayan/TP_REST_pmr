@@ -29,7 +29,7 @@ public class PmrService {
     public Set<PmrDTO> getAllPmr()
     {
         pmrRepository.findAll();
-        return new HashSet<PmrDTO>();
+        return new HashSet<>();
     }
 
     public PmrDTO getPmr(String nom, String description)
