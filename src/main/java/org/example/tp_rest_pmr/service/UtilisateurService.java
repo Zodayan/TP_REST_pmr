@@ -23,11 +23,11 @@ public class UtilisateurService
     {
         this.utilisateurRepository = utilisateurRepository;
     }
-    
+
     public Set<UtilisateurDTO> getAllUtilisateurs()
     {
         utilisateurRepository.findAll();
-        return new HashSet<UtilisateurDTO>();
+        return new HashSet<>();
     }
 
     public UtilisateurDTO getUtilisateur(Integer id)
@@ -54,7 +54,7 @@ public class UtilisateurService
         utilisateurToUpdate.setMail(email);
         utilisateurToUpdate.setUsername(username);
         utilisateurToUpdate.setPassword(password);
-        utilisateurRepository.updateUtilisateur(utilisateurToUpdate);
+        utilisateurRepository.save(utilisateurToUpdate);
     }
 
     public void deleteUtilisateurByNomAndPrenomAndMail(String nom, String prenom, String email)

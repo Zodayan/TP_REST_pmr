@@ -20,6 +20,7 @@ public class PmrEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+
     @Column(name = "nom", nullable = false, length = 100)
     private String nom;
 
@@ -32,8 +33,8 @@ public class PmrEntity {
     @Column(name = "point_geo", nullable = false, length = 100)
     private String point_geo;
 
-    @OneToMany(mappedBy = "pmr_id")
-    private Set<ReservationEntity> pmrs;
+    @OneToMany(mappedBy = "pmr")
+    private Set<ReservationEntity> reservations;
 
 
 
