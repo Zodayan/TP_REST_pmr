@@ -9,7 +9,6 @@ import org.mapstruct.Mapping;
 public interface UtilisateurMapper {
     UtilisateurDTO toDTO(UtilisateurEntity pmr);
 
-    @Mapping(target = "password", ignore = true)
     UtilisateurEntity toEntity(UtilisateurDTO pmr);
 }
 

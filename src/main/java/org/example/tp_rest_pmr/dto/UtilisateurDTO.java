@@ -10,8 +10,9 @@ public class UtilisateurDTO {
     private int id;
     private String nom;
     private String prenom;
+    private String password;
     private String mail;
     private String username;
 
-    private Set<Integer> pmrIds;
+    private Set<ReservationDTO> reservations;
 }

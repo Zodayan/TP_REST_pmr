@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 
 @Mapper
 public interface ReservationMapper {
-    @Mapping(source = "reservation.reservation_id.pmr_id", target = "pmrId")
-    @Mapping(source = "reservation.reservation_id.utilisateur_id", target = "utilisateurId")
+    @Mapping(source = "id.pmr", target = "pmr")
+    @Mapping(source = "id.utilisateur", target = "utilisateur")
     ReservationDTO toDTO(ReservationEntity reserv);
 
-    @Mapping(target = "reservation.reservation_id.pmr_id", source = "pmrId")
-    @Mapping(target = "reservation.reservation_id.utilisateur_id", source = "utilisateurId")
+    @Mapping(target = "id.pmr", source = "pmr")
+    @Mapping(target = "id.utilisateur", source = "utilisateur")
     ReservationEntity toEntity(ReservationDTO reserv);
 }

@@ -14,5 +14,5 @@ public class PmrDTO {
     private String description;
     private String point_geo;
 
-    private Set<Integer> utilisateurIds;
+    private Set<ReservationDTO> reservations;
 }

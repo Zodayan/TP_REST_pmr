@@ -4,8 +4,8 @@ import lombok.*;
 
 @Getter @Setter @NoArgsConstructor
 public class ReservationDTO {
-    private int utilisateurId;
-    private int pmrId;
+    private UtilisateurDTO utilisateur;
+    private PmrDTO pmr;
 
     // Info de reservation
     private Integer reservation;
