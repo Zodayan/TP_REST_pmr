@@ -4,38 +4,51 @@ import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataGetUti
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPostAddUtilisateur;
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataDeleteUtilisateur;
 import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPutUpdateUtilisateur;
+import org.example.tp_rest_pmr.service.UtilisateurService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UtilisateurController {
 
+    private final UtilisateurService utilisateurService;
+
+    @Autowired
+    public UtilisateurController(UtilisateurService utilisateurService)
+    {
+        this.utilisateurService = utilisateurService;
+    }
+
     @GetMapping(value = "/utilisateur", params = "action=getAllUtilisateurs")
     public String getAllUtilisateurs()
     {
-        return "getAllUtilisateurs";
+        return utilisateurService.getAllUtilisateurs().toString();
     }
 
     @GetMapping(value = "/utilisateur", params = "action=getUtilisateur")
     public String getUtilisateur(DataGetUtilisateur data)
     {
-        return "getUtilisateur " + data.getIdUtilisateur();
+        return utilisateurService.getUtilisateur(data.getIdUtilisateur()).toString();
     }
 
     @PostMapping(value = "/utilisateur", params = "action=addUtilisateur")
     public String postAddUtilisateur(@RequestBody DataPostAddUtilisateur data)
     {
-        return "addUtilisateur " + data;
+        utilisateurService.addUtilisateur(data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPassword());
+        return "User added";
     }
 
     @PutMapping(value = "/utilisateur", params = "action=updateUtilisateur")
     public String putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
     {
-        return "updateUtilisateur " + data;
+        utilisateurService.updateUtilisateur(data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPrenom());
+        return "Updated User";
     }
 
     @DeleteMapping(value = "/utilisateur", params = "action=deleteUtilisateur")
     public String deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
     {
-        return "deleteUtilisateur" + data;
+        utilisateurService.deleteUtilisateurByNomAndPrenomAndMail(data.getNom(), data.getPrenom(), data.getEmail());
+        return "User deleted";
     }
 }

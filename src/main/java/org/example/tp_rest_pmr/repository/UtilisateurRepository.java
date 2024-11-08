@@ -7,5 +7,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UtilisateurRepository extends JpaRepository<UtilisateurEntity, Integer>
 {
-    // ICI ON VA METTRE LES OPERATIONS CRUD. C'est ici que l'on va faire la logique métier et travailler sur la BDD
+    // Pas besoin de faire le code des méthodes, Spring s'occupe de le faire en
+    // déduisant du nom de la méthode (voir "derived query methods Spring")
+    UtilisateurEntity findByNomAndPrenom(String nom, String prenom);
+
+    void deleteByNomAndPrenomAndMail(String nom, String prenom, String mail);
+
+    void updateUtilisateur(UtilisateurEntity utilisateur);
 }
