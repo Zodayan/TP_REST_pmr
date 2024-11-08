@@ -10,6 +10,9 @@ import lombok.*;
 public class DataPutUpdatePmr
 {
     @NonNull
+    private Integer id;
+
+    @NonNull
     private String nom;
 
     @NonNull

@@ -29,18 +29,19 @@ public class PmrService {
     public Set<PmrDTO> getAllPmr()
     {
         pmrRepository.findAll();
-        return new HashSet<>();
+        return new HashSet<PmrDTO>();
     }
 
-    public PmrDTO getPmr(String nom, String description)
+    public PmrDTO getPmr(Integer id)
     {
-        pmrRepository.findPmrByNomAndDescription(nom, description);
+        pmrRepository.findPmrById(id);
         return new PmrDTO();
     }
 
-    public void addPmr(String nom, Integer quantite, String description, String pointGeo)
+    public void addPmr(Integer id,String nom, Integer quantite, String description, String pointGeo)
     {
         PmrEntity pmrEntity = new PmrEntity();
+        pmrEntity.setId(id);
         pmrEntity.setNom(nom);
         pmrEntity.setQuantite(quantite);
         pmrEntity.setDescription(description);
@@ -48,18 +49,18 @@ public class PmrService {
         pmrRepository.save(pmrEntity);
     }
 
-    public void updatePmr(String nom, Integer quantite, String description, String pointGeo)
+    public void updatePmr(Integer id,String Nom, Integer quantite, String description, String pointGeo)
     {
-        PmrEntity pmrEntity = pmrRepository.findPmrByNomAndDescription(nom, description);
+        PmrEntity pmrEntity = pmrRepository.findPmrById(id);
+        pmrEntity.setNom(Nom);
         pmrEntity.setQuantite(quantite);
         pmrEntity.setDescription(description);
         pmrEntity.setPoint_geo(pointGeo);
         pmrRepository.save(pmrEntity);
     }
 
-    public void deletePmr(String nom, String description)
+    public void deletePmr(Integer id)
     {
-        pmrRepository.findPmrByNomAndDescription(nom, description);
-        pmrRepository.delete(pmrRepository.findPmrByNomAndDescription(nom, description));
+        pmrRepository.delete(pmrRepository.findPmrById(id));
     }
 }

@@ -10,6 +10,9 @@ import lombok.*;
 public class DataPutUpdateUtilisateur
 {
     @NonNull
+    private Integer id;
+
+    @NonNull
     private String nom;
 
     @NonNull

@@ -10,8 +10,7 @@ import lombok.*;
 public class DataDeletePmr
 {
     @NonNull
-    private String nom;
+    private Integer id;
 
-    @NonNull
-    private String description;
+
 }

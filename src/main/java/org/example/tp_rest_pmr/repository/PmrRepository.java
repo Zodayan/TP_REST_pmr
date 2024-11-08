@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PmrRepository extends JpaRepository<PmrEntity, Integer>
 {
-    PmrEntity findPmrByNomAndDescription(String nom, String description);
+    PmrEntity findPmrById(Integer id);
 }
