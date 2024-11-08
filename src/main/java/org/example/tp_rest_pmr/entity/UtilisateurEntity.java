@@ -3,6 +3,7 @@ package org.example.tp_rest_pmr.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,6 @@ public class UtilisateurEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @Column(name = "nom", nullable = false)
     private String nom;
 
@@ -36,7 +36,7 @@ public class UtilisateurEntity
     @Column(name = "username", nullable = false)
     private String username;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "id.utilisateur")
     private Set<ReservationEntity> reservations;
 
 }
