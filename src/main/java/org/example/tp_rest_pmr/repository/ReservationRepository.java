@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReservationRepository extends JpaRepository<ReservationEntity, EmbeddedIdReservation>
 {
+    ReservationEntity findReservationById(EmbeddedIdReservation embeddedIdReservation);
 }

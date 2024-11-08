@@ -4,6 +4,7 @@ import org.example.tp_rest_pmr.dto.UtilisateurDTO;
 import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 @Mapper( uses = ReservationMapper.class )
 public interface UtilisateurMapper {

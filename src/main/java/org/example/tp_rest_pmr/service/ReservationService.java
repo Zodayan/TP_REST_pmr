@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.example.tp_rest_pmr.dto.ReservationDTO;
 import org.example.tp_rest_pmr.entity.EmbeddedIdReservation;
 import org.example.tp_rest_pmr.entity.ReservationEntity;
+import org.example.tp_rest_pmr.mapper.ReservationMapper;
+import org.example.tp_rest_pmr.mapper.UtilisateurMapper;
 import org.example.tp_rest_pmr.repository.ReservationRepository;
 import org.example.tp_rest_pmr.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +24,27 @@ import java.util.Set;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final ReservationMapper reservationMapper;
 
     @Autowired
-    public ReservationService(ReservationRepository reservationRepository) {
+    public ReservationService(ReservationRepository reservationRepository, ReservationMapper reservationMapper) {
         this.reservationRepository = reservationRepository;
+        this.reservationMapper = reservationMapper;
     }
 
     public Set<ReservationDTO> getAllReservations()
     {
-        reservationRepository.findAll();
-        return new HashSet<ReservationDTO>();
+        HashSet<ReservationDTO> reservations = new HashSet<>();
+        for(ReservationEntity reservation : reservationRepository.findAll())
+        {
+            reservations.add(reservationMapper.toDTO(reservation));
+        }
+        return reservations;
     }
 
     public ReservationDTO getReservationById(Integer pmrId, Integer utilisateurId)
     {
-        reservationRepository.findById(new EmbeddedIdReservation(pmrId, utilisateurId));
-        return new ReservationDTO();
+        return reservationMapper.toDTO(reservationRepository.findReservationById(new EmbeddedIdReservation(pmrId, utilisateurId)));
     }
 
     public void addReservation(Integer pmrId, Integer utilisateurId, Integer reservation)

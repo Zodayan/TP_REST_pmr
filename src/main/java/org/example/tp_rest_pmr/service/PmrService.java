@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.tp_rest_pmr.dto.PmrDTO;
 import org.example.tp_rest_pmr.entity.PmrEntity;
+import org.example.tp_rest_pmr.mapper.PmrMapper;
 import org.example.tp_rest_pmr.repository.PmrRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,22 +21,28 @@ import java.util.Set;
 public class PmrService {
 
     private final PmrRepository pmrRepository;
+    private final PmrMapper pmrMapper;
 
     @Autowired
-    public PmrService(PmrRepository pmrRepository) {
+    public PmrService(PmrRepository pmrRepository, PmrMapper pmrMapper) {
         this.pmrRepository = pmrRepository;
+        this.pmrMapper = pmrMapper;
     }
 
     public Set<PmrDTO> getAllPmr()
     {
-        pmrRepository.findAll();
-        return new HashSet<PmrDTO>();
+        HashSet<PmrDTO> pmrDTOs = new HashSet<>();
+        for (PmrEntity pmrEntity : pmrRepository.findAll())
+        {
+            pmrDTOs.add(pmrMapper.toDTO(pmrEntity));
+        }
+        return pmrDTOs;
     }
 
     public PmrDTO getPmr(Integer id)
     {
-        pmrRepository.findPmrById(id);
-        return new PmrDTO();
+
+        return pmrMapper.toDTO(pmrRepository.findPmrById(id));
     }
 
     public void addPmr(String nom, Integer quantite, String description, String pointGeo)
