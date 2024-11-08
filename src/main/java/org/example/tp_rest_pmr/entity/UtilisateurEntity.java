@@ -20,6 +20,7 @@ public class UtilisateurEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @Column(name = "nom", nullable = false)
     private String nom;
 

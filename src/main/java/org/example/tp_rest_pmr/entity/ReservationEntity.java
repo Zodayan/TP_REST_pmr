@@ -20,6 +20,7 @@ public class ReservationEntity {
     @Column(name = "reservation", nullable = false)
     private Integer reservation;
 
+
     @ManyToOne
     @MapsId("pmr_id")
     @JoinColumn(name = "pmr_id")

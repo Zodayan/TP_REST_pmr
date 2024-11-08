@@ -20,6 +20,7 @@ public class PmrEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+
     @Column(name = "nom", nullable = false, length = 100)
     private String nom;
 
