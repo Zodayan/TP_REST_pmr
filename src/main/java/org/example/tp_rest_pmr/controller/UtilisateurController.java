@@ -8,6 +8,7 @@ import org.example.tp_rest_pmr.dto.UtilisateurDTO;
 import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -25,15 +26,15 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/getAllUtilisateurs")
-    public String getAllUtilisateurs()
+    public ResponseEntity<Set<UtilisateurDTO>> getAllUtilisateurs()
     {
-        return utilisateurService.getAllUtilisateurs().toString();
+        return ResponseEntity.ok(utilisateurService.getAllUtilisateurs());
     }
 
     @GetMapping(value = "/utilisateur/getUtilisateur")
-    public String getUtilisateur(DataGetUtilisateur data)
+    public ResponseEntity<UtilisateurDTO> getUtilisateur(DataGetUtilisateur data)
     {
-        return utilisateurService.getUtilisateur(data.getIdUtilisateur()).toString();
+        return ResponseEntity.ok(utilisateurService.getUtilisateur(data.getIdUtilisateur()));
     }
 
     @PostMapping(value = "/utilisateur/addUtilisateur")

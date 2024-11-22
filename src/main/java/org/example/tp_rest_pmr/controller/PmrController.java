@@ -4,9 +4,13 @@ import org.example.tp_rest_pmr.controller.pmr_controller_data.DataGetPmr;
 import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPostAddPmr;
 import org.example.tp_rest_pmr.controller.pmr_controller_data.DataDeletePmr;
 import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPutUpdatePmr;
+import org.example.tp_rest_pmr.dto.PmrDTO;
 import org.example.tp_rest_pmr.service.PmrService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 public class PmrController
@@ -21,15 +25,15 @@ public class PmrController
     }
 
     @GetMapping(value = "/pmr/getAllPmr")
-    public String getAllPmr()
+    public ResponseEntity<Set<PmrDTO>> getAllPmr()
     {
-        return pmrService.getAllPmr().toString();
+        return ResponseEntity.ok(pmrService.getAllPmr());
     }
 
     @GetMapping(value = "/pmr/getPmr")
-    public String getPmr(DataGetPmr data)
+    public ResponseEntity<PmrDTO> getPmr(DataGetPmr data)
     {
-        return pmrService.getPmr(data.getId()).toString();
+        return ResponseEntity.ok(pmrService.getPmr(data.getId()));
     }
 
     @PostMapping(value = "/pmr/addPmr")

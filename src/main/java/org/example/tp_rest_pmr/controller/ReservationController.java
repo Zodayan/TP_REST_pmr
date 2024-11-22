@@ -4,9 +4,13 @@ import org.example.tp_rest_pmr.controller.reservation_controller_data.DataGetRes
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostAddReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataDeleteReservation;
 import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPutUpdateReservation;
+import org.example.tp_rest_pmr.dto.ReservationDTO;
 import org.example.tp_rest_pmr.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 public class ReservationController
@@ -20,16 +24,16 @@ public class ReservationController
     }
 
     @GetMapping(value = "/reservation/getAllReservations")
-    public String getAllReservations()
+    public ResponseEntity<Set<ReservationDTO>> getAllReservations()
     {
-        return reservationService.getAllReservations().toString();
+        return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
     @GetMapping(value = "/reservation/getReservation")
-    public String getReservation(DataGetReservation data)
+    public ResponseEntity<ReservationDTO> getReservation(DataGetReservation data)
     {
-        reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId());
-        return "getReservation " + data;
+
+        return ResponseEntity.ok(reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId()));
     }
 
     @PostMapping(value = "/reservation/addReservation")
