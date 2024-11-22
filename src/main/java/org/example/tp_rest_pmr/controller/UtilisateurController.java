@@ -24,33 +24,33 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
-    @GetMapping(value = "/utilisateur", params = "action=getAllUtilisateurs")
+    @GetMapping(value = "/utilisateur/getAllUtilisateurs")
     public String getAllUtilisateurs()
     {
         return utilisateurService.getAllUtilisateurs().toString();
     }
 
-    @GetMapping(value = "/utilisateur", params = "action=getUtilisateur")
+    @GetMapping(value = "/utilisateur/getUtilisateur")
     public String getUtilisateur(DataGetUtilisateur data)
     {
         return utilisateurService.getUtilisateur(data.getIdUtilisateur()).toString();
     }
 
-    @PostMapping(value = "/utilisateur", params = "action=addUtilisateur")
+    @PostMapping(value = "/utilisateur/addUtilisateur")
     public String postAddUtilisateur(@RequestBody DataPostAddUtilisateur data)
     {
         utilisateurService.addUtilisateur(data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPassword());
         return "User added";
     }
 
-    @PutMapping(value = "/utilisateur", params = "action=updateUtilisateur")
+    @PutMapping(value = "/utilisateur/updateUtilisateur")
     public String putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
     {
         utilisateurService.updateUtilisateur(data.getId(), data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPrenom());
         return "Updated User";
     }
 
-    @DeleteMapping(value = "/utilisateur", params = "action=deleteUtilisateur")
+    @DeleteMapping(value = "/utilisateur/deleteUtilisateur")
     public String deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
     {
         utilisateurService.deleteUtilisateur(data.getId());

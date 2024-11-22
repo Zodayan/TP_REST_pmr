@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UtilisateurDTO {
     private int id;
     private String nom;

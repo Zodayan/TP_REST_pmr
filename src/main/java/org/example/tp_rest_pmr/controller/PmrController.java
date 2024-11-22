@@ -20,33 +20,33 @@ public class PmrController
         this.pmrService = pmrService;
     }
 
-    @GetMapping(value = "/pmr", params = "action=getAllPmr")
+    @GetMapping(value = "/pmr/getAllPmr")
     public String getAllPmr()
     {
         return pmrService.getAllPmr().toString();
     }
 
-    @GetMapping(value = "/pmr", params = "action=getPmr")
+    @GetMapping(value = "/pmr/getPmr")
     public String getPmr(DataGetPmr data)
     {
         return pmrService.getPmr(data.getId()).toString();
     }
 
-    @PostMapping(value = "/pmr", params = "action=addPmr")
+    @PostMapping(value = "/pmr/addPmr")
     public String postAddPmr(@RequestBody DataPostAddPmr data)
     {
         pmrService.addPmr(data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
         return "Pmr Added";
     }
 
-    @PutMapping(value = "/pmr", params = "action=updatePmr")
+    @PutMapping(value = "/pmr/updatePmr")
     public String putUpdatePmr(@RequestBody DataPutUpdatePmr data)
     {
         pmrService.updatePmr(data.getId(),data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
         return "Pmr Updated";
     }
 
-    @DeleteMapping(value = "/pmr", params = "action=deletePmr")
+    @DeleteMapping(value = "/pmr/deletePmr")
     public String deletePmr(@RequestBody DataDeletePmr data)
     {
         pmrService.deletePmr(data.getId());

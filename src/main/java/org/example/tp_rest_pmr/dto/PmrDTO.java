@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class PmrDTO {
     private int id;
     private String nom;
