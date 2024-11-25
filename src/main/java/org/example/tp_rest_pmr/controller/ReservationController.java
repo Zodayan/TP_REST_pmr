@@ -38,20 +38,23 @@ public class ReservationController
     }
 
     @PostMapping(value = "/reservation/addReservation")
-    public void postAddReservation(@RequestBody DataPostAddReservation data)
+    public ResponseEntity<Response> postAddReservation(@RequestBody DataPostAddReservation data)
     {
         reservationService.addReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
+        return ResponseEntity.ok(new Response("Reservation Added"));
     }
 
     @PutMapping(value = "/reservation/updateReservation")
-    public void putUpdateReservation(@RequestBody DataPutUpdateReservation data)
+    public ResponseEntity<Response> putUpdateReservation(@RequestBody DataPutUpdateReservation data)
     {
         reservationService.updateReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
+        return ResponseEntity.ok(new Response("Reservation Updated"));
     }
 
     @DeleteMapping(value = "/reservation/updateReservation")
-    public void deleteReservation(@RequestBody DataDeleteReservation data)
+    public ResponseEntity<Response> deleteReservation(@RequestBody DataDeleteReservation data)
     {
         reservationService.deleteReservation(data.getPmrId(), data.getUtilisateurId());
+        return ResponseEntity.ok(new Response("Reservation Deleted"));
     }
 }

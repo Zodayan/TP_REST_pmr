@@ -7,6 +7,7 @@ import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPutUpdatePmr;
 import org.example.tp_rest_pmr.dto.PmrDTO;
 import org.example.tp_rest_pmr.service.PmrService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,23 +39,23 @@ public class PmrController
     }
 
     @PostMapping(value = "/pmr/addPmr")
-    public String postAddPmr(@RequestBody DataPostAddPmr data)
+    public ResponseEntity<Response> postAddPmr(@RequestBody DataPostAddPmr data)
     {
         pmrService.addPmr(data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
-        return "Pmr Added";
+        return ResponseEntity.ok(new Response("Pmr Added"));
     }
 
     @PutMapping(value = "/pmr/updatePmr")
-    public String putUpdatePmr(@RequestBody DataPutUpdatePmr data)
+    public ResponseEntity<Response> putUpdatePmr(@RequestBody DataPutUpdatePmr data)
     {
-        pmrService.updatePmr(data.getId(),data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
-        return "Pmr Updated";
+        pmrService.updatePmr(data.getId(),data.getNom(), data.getQuantite(), data.getDescription(), data.getPoint_geo());
+        return ResponseEntity.ok(new Response("Pmr Updated"));
     }
 
     @DeleteMapping(value = "/pmr/deletePmr")
-    public String deletePmr(@RequestBody DataDeletePmr data)
+    public ResponseEntity<Response> deletePmr(@RequestBody DataDeletePmr data)
     {
         pmrService.deletePmr(data.getId());
-        return "Pmr Deleted";
+        return ResponseEntity.ok(new Response("Pmr Deleted"));
     }
 }

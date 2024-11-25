@@ -22,5 +22,5 @@ public class DataPutUpdatePmr
     private String description;
 
     @NonNull
-    private String pointGeo;
+    private String point_geo;
 }

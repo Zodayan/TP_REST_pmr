@@ -39,23 +39,23 @@ public class UtilisateurController {
     }
 
     @PostMapping(value = "/utilisateur/addUtilisateur")
-    public String postAddUtilisateur(@RequestBody DataPostAddUtilisateur data)
+    public ResponseEntity<Response> postAddUtilisateur(@RequestBody DataPostAddUtilisateur data)
     {
         utilisateurService.addUtilisateur(data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPassword());
-        return "User added";
+        return ResponseEntity.ok(new Response("Utilisateur Added"));
     }
 
     @PutMapping(value = "/utilisateur/updateUtilisateur")
-    public String putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
+    public ResponseEntity<Response> putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
     {
         utilisateurService.updateUtilisateur(data.getId(), data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPrenom());
-        return "Updated User";
+        return ResponseEntity.ok(new Response("Utilisateur Updated"));
     }
 
     @DeleteMapping(value = "/utilisateur/deleteUtilisateur")
-    public String deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
+    public ResponseEntity<Response> deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
     {
         utilisateurService.deleteUtilisateur(data.getId());
-        return "User deleted";
+        return ResponseEntity.ok(new Response("Utilisateur Deleted"));
     }
 }
