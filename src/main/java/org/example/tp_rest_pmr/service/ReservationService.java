@@ -13,6 +13,7 @@ import org.example.tp_rest_pmr.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,9 +33,9 @@ public class ReservationService {
         this.reservationMapper = reservationMapper;
     }
 
-    public Set<ReservationDTO> getAllReservations()
+    public ArrayList<ReservationDTO> getAllReservations()
     {
-        HashSet<ReservationDTO> reservations = new HashSet<>();
+        ArrayList<ReservationDTO> reservations = new ArrayList<>();
         for(ReservationEntity reservation : reservationRepository.findAll())
         {
             reservations.add(reservationMapper.toDTO(reservation));

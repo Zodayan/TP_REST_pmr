@@ -10,6 +10,7 @@ import org.example.tp_rest_pmr.repository.PmrRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,9 +30,9 @@ public class PmrService {
         this.pmrMapper = pmrMapper;
     }
 
-    public Set<PmrDTO> getAllPmr()
+    public ArrayList<PmrDTO> getAllPmr()
     {
-        HashSet<PmrDTO> pmrDTOs = new HashSet<>();
+        ArrayList<PmrDTO> pmrDTOs = new ArrayList<>();
         for (PmrEntity pmrEntity : pmrRepository.findAll())
         {
             pmrDTOs.add(pmrMapper.toDTO(pmrEntity));

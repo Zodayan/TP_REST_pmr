@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/getAllUtilisateurs")
-    public ResponseEntity<Set<UtilisateurDTO>> getAllUtilisateurs()
+    public ResponseEntity<ArrayList<UtilisateurDTO>> getAllUtilisateurs()
     {
         return ResponseEntity.ok(utilisateurService.getAllUtilisateurs());
     }

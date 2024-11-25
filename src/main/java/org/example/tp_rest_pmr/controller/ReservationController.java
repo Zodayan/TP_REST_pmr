@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @RestController
@@ -24,7 +25,7 @@ public class ReservationController
     }
 
     @GetMapping(value = "/reservation/getAllReservations")
-    public ResponseEntity<Set<ReservationDTO>> getAllReservations()
+    public ResponseEntity<ArrayList<ReservationDTO>> getAllReservations()
     {
         return ResponseEntity.ok(reservationService.getAllReservations());
     }

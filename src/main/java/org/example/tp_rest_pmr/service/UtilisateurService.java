@@ -2,6 +2,7 @@ package org.example.tp_rest_pmr.service;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import org.example.tp_rest_pmr.dto.UtilisateurDTO;
@@ -27,9 +28,9 @@ public class UtilisateurService
         this.utilisateurMapper = utilisateurMapper;
     }
 
-    public Set<UtilisateurDTO> getAllUtilisateurs()
+    public ArrayList<UtilisateurDTO> getAllUtilisateurs()
     {
-        HashSet<UtilisateurDTO> utilisateurs = new HashSet<>();
+        ArrayList<UtilisateurDTO> utilisateurs = new ArrayList<>();
         for (UtilisateurEntity utilisateurEntity : utilisateurRepository.findAll())
         {
             utilisateurs.add(utilisateurMapper.toDTO(utilisateurEntity));

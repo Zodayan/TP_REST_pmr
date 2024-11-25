@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @RestController
@@ -25,7 +26,7 @@ public class PmrController
     }
 
     @GetMapping(value = "/pmr/getAllPmr")
-    public ResponseEntity<Set<PmrDTO>> getAllPmr()
+    public ResponseEntity<ArrayList<PmrDTO>> getAllPmr()
     {
         return ResponseEntity.ok(pmrService.getAllPmr());
     }
