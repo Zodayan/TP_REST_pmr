@@ -19,8 +19,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Service
-public class PmrService {
-
+public class PmrService
+{
     private final PmrRepository pmrRepository;
     private final PmrMapper pmrMapper;
 
