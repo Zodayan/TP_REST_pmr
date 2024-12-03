@@ -35,7 +35,15 @@ public class PmrController
     @GetMapping(value = "/pmr/getPmr")
     public ResponseEntity<PmrDTO> getPmr(DataGetPmr data)
     {
-        return ResponseEntity.ok(pmrService.getPmr(data.getId()));
+        PmrDTO pmr = pmrService.getPmr(data.getId());
+        if (pmr != null)
+        {
+            return ResponseEntity.ok(pmr);
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping(value = "/pmr/addPmr")

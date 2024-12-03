@@ -35,7 +35,16 @@ public class UtilisateurController {
     @GetMapping(value = "/utilisateur/getUtilisateur")
     public ResponseEntity<UtilisateurDTO> getUtilisateur(DataGetUtilisateur data)
     {
-        return ResponseEntity.ok(utilisateurService.getUtilisateur(data.getIdUtilisateur()));
+        UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(data.getIdUtilisateur());
+
+        if (utilisateur == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+        else
+        {
+            return ResponseEntity.ok(utilisateur);
+        }
     }
 
     @PostMapping(value = "/utilisateur/addUtilisateur")

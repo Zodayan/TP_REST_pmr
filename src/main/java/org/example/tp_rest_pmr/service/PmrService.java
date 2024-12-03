@@ -42,7 +42,6 @@ public class PmrService
 
     public PmrDTO getPmr(Integer id)
     {
-
         return pmrMapper.toDTO(pmrRepository.findPmrById(id));
     }
 

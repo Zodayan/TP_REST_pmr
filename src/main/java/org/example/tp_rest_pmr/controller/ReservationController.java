@@ -33,8 +33,16 @@ public class ReservationController
     @GetMapping(value = "/reservation/getReservation")
     public ResponseEntity<ReservationDTO> getReservation(DataGetReservation data)
     {
+        ReservationDTO reservation = reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId());
 
-        return ResponseEntity.ok(reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId()));
+        if (reservation == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+        else
+        {
+            return ResponseEntity.ok(reservation);
+        }
     }
 
     @PostMapping(value = "/reservation/addReservation")
