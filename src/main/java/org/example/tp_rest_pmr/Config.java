@@ -18,7 +18,9 @@ public class Config implements WebMvcConfigurer {
     // Bean gérant la configuration CORS
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/pmr/**")
+        //si il y avait une raison particuliere a /pmr/** plutot que directement /**, bien pensr a specifier les routes
+        //utilisateur et reservation au passage
+        registry.addMapping("/**")
                 .allowedOrigins("http://localhost:4200") // Autorisation de l'origine du client Angular
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
