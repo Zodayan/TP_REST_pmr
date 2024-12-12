@@ -1,9 +1,6 @@
 package org.example.tp_rest_pmr.controller;
 
-import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataGetUtilisateur;
-import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPostAddUtilisateur;
-import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataDeleteUtilisateur;
-import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataPutUpdateUtilisateur;
+import org.example.tp_rest_pmr.controller.utilisateur_controller_data.*;
 import org.example.tp_rest_pmr.dto.UtilisateurDTO;
 import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.service.UtilisateurService;
@@ -45,6 +42,23 @@ public class UtilisateurController {
         {
             return ResponseEntity.ok(utilisateur);
         }
+    }
+
+    @GetMapping(value = "/utilisateur/isUsernameAvailable")
+    public boolean isUsernameAvailable(DataCheckUsername data)
+    {
+        return utilisateurService.isUsernameAvailable(data.getUsername());
+    }
+
+    @GetMapping(value = "/utilisateur/checkLogin")
+    public boolean checkLogin(DataCheckLogin data)
+    {
+        try {
+            Thread.sleep(100);
+        }
+        catch (InterruptedException ignored) {}
+
+        return utilisateurService.checkLogin(data.getUsername(), data.getPassword());
     }
 
     @PostMapping(value = "/utilisateur/addUtilisateur")
