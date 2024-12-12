@@ -3,8 +3,6 @@ package org.example.tp_rest_pmr.service;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import org.example.tp_rest_pmr.dto.UtilisateurDTO;
 import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.mapper.UtilisateurMapper;
@@ -43,6 +41,26 @@ public class UtilisateurService
         utilisateurRepository.findById(id);
 
         return utilisateurMapper.toDTO(utilisateurRepository.findById(id).get());
+    }
+
+    public boolean isUsernameAvailable(String username)
+    {
+        for (UtilisateurEntity utilisateurEntity : utilisateurRepository.findAll()){
+            if (utilisateurEntity.getUsername().equals(username)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkLogin(String username, String password)
+    {
+        for (UtilisateurEntity utilisateurEntity : utilisateurRepository.findAll()){
+            if (utilisateurEntity.getUsername().equals(username)){
+                return utilisateurEntity.getPassword().equals(password);
+            }
+        }
+        return false;
     }
 
     public void addUtilisateur(String nom, String prenom, String email, String username, String password)
