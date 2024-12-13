@@ -15,7 +15,7 @@ public class DataPostAddUtilisateur {
     private String prenom;
 
     @NonNull
-    private String email;
+    private String mail;
 
     @NonNull
     private String username;

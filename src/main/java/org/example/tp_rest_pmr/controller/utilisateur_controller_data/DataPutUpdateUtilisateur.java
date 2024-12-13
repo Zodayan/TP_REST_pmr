@@ -10,17 +10,25 @@ import lombok.*;
 public class DataPutUpdateUtilisateur
 {
     @NonNull
-    private Integer id;
-
-    @NonNull
     private String nom;
 
     @NonNull
     private String prenom;
 
     @NonNull
-    private String email;
+    private String mail;
 
     @NonNull
     private String username;
+
+    @NonNull
+    private String password;
+
+    @NonNull
+    private String currentPassword;
+
+    @NonNull
+    private String currentUsername;
+
+
 }
