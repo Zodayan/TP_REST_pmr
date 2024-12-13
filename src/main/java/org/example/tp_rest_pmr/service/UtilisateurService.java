@@ -26,6 +26,16 @@ public class UtilisateurService
         this.utilisateurMapper = utilisateurMapper;
     }
 
+    public int getIdByLogin(String username, String password){
+        ArrayList<UtilisateurDTO> users = getAllUtilisateurs();
+        for (UtilisateurDTO user : users){
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                return user.getId();
+            }
+        }
+        return -1;
+    }
+
     public ArrayList<UtilisateurDTO> getAllUtilisateurs()
     {
         ArrayList<UtilisateurDTO> utilisateurs = new ArrayList<>();
