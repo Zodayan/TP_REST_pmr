@@ -64,14 +64,38 @@ public class UtilisateurController {
     @PostMapping(value = "/utilisateur/addUtilisateur")
     public ResponseEntity<Response> postAddUtilisateur(@RequestBody DataPostAddUtilisateur data)
     {
-        utilisateurService.addUtilisateur(data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPassword());
+        utilisateurService.addUtilisateur(data.getNom(), data.getPrenom(), data.getMail(), data.getUsername(), data.getPassword());
         return ResponseEntity.ok(new Response("Utilisateur Added"));
+    }
+
+    @PostMapping(value = "/utilisateur/getUtilisateurByLogin")
+    public ResponseEntity<UtilisateurDTO> getUtilisateurByLogin(@RequestBody DataPostGetUtilisateurLogin data)
+    {
+        int id = utilisateurService.getIdByLogin(data.getUsername(), data.getPassword());
+        if (id == -1){
+            return ResponseEntity.notFound().build();
+        }
+
+        UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(id);
+
+        if (utilisateur == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+        else
+        {
+            return ResponseEntity.ok(utilisateur);
+        }
     }
 
     @PutMapping(value = "/utilisateur/updateUtilisateur")
     public ResponseEntity<Response> putUpdateUtilisateur(@RequestBody DataPutUpdateUtilisateur data)
     {
-        utilisateurService.updateUtilisateur(data.getId(), data.getNom(), data.getPrenom(), data.getEmail(), data.getUsername(), data.getPrenom());
+        int id = utilisateurService.getIdByLogin(data.getCurrentUsername(),data.getCurrentPassword());
+        if (id == -1){
+            return ResponseEntity.notFound().build();
+        }
+        utilisateurService.updateUtilisateur(id, data.getNom(), data.getPrenom(), data.getMail(), data.getUsername(), data.getPassword());
         return ResponseEntity.ok(new Response("Utilisateur Updated"));
     }
 
