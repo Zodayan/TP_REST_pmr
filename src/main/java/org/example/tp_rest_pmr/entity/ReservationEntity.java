@@ -20,12 +20,12 @@ public class ReservationEntity {
     @Column(name = "reservation", nullable = false)
     private Integer reservation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("pmr_id")
     @JoinColumn(name = "pmr_id")
     private PmrEntity pmr;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("utilisateur_id")
     @JoinColumn(name = "utilisateur_id")
     private UtilisateurEntity utilisateur;

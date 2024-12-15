@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UtilisateurRepository extends JpaRepository<UtilisateurEntity, Integer>
 {
+    UtilisateurEntity findUtilisateurById(Integer utilisateurId);
     // Pas besoin de faire le code des méthodes, Spring s'occupe de le faire en
     // déduisant du nom de la méthode (voir "derived query methods Spring")
 }

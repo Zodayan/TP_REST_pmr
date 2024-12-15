@@ -15,5 +15,5 @@ public class UtilisateurDTO {
     private String mail;
     private String username;
 
-    private Set<ReservationDTO> reservations;
+    private Set<Integer> reservationsId;
 }

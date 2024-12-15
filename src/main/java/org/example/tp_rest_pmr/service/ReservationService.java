@@ -5,9 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.tp_rest_pmr.dto.ReservationDTO;
 import org.example.tp_rest_pmr.entity.EmbeddedIdReservation;
+import org.example.tp_rest_pmr.entity.PmrEntity;
 import org.example.tp_rest_pmr.entity.ReservationEntity;
+import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.mapper.ReservationMapper;
 import org.example.tp_rest_pmr.mapper.UtilisateurMapper;
+import org.example.tp_rest_pmr.repository.PmrRepository;
 import org.example.tp_rest_pmr.repository.ReservationRepository;
 import org.example.tp_rest_pmr.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +29,15 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final ReservationMapper reservationMapper;
+    private final UtilisateurRepository utilisateurRepository;
+    private final PmrRepository pmrRepository;
 
     @Autowired
-    public ReservationService(ReservationRepository reservationRepository, ReservationMapper reservationMapper) {
+    public ReservationService(ReservationRepository reservationRepository, ReservationMapper reservationMapper, UtilisateurRepository utilisateurRepository, PmrRepository pmrRepository) {
         this.reservationRepository = reservationRepository;
         this.reservationMapper = reservationMapper;
+        this.utilisateurRepository = utilisateurRepository;
+        this.pmrRepository = pmrRepository;
     }
 
     public ArrayList<ReservationDTO> getAllReservations()
@@ -45,14 +52,24 @@ public class ReservationService {
 
     public ReservationDTO getReservationById(Integer pmrId, Integer utilisateurId)
     {
-        return reservationMapper.toDTO(reservationRepository.findReservationById(new EmbeddedIdReservation(pmrId, utilisateurId)));
+        ReservationEntity reservation = reservationRepository.findReservationById(new EmbeddedIdReservation(pmrId, utilisateurId));
+        return reservationMapper.toDTO(reservation);
     }
 
     public void addReservation(Integer pmrId, Integer utilisateurId, Integer reservation)
     {
-        ReservationEntity nouvelleReservation = new ReservationEntity();
-        nouvelleReservation.setId(new EmbeddedIdReservation(pmrId, utilisateurId));
-        nouvelleReservation.setReservation(reservation);
+        PmrEntity associatedPmr = pmrRepository.findById(pmrId)
+                .orElseThrow(() -> new RuntimeException("pmrId must be a valid id for pmr"));
+        UtilisateurEntity associatedUtilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("utilisateurId must be a valid id for utilisateur"));
+
+        ReservationEntity nouvelleReservation = ReservationEntity.builder()
+                        .id(new EmbeddedIdReservation(associatedPmr.getId(), associatedUtilisateur.getId()))
+                        .reservation(reservation)
+                        .pmr(associatedPmr)
+                        .utilisateur(associatedUtilisateur)
+                        .build();
+
         reservationRepository.save(nouvelleReservation);
     }
 
