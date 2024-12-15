@@ -48,9 +48,10 @@ public class UtilisateurService
 
     public UtilisateurDTO getUtilisateur(Integer id)
     {
-        utilisateurRepository.findById(id);
+        UtilisateurEntity utilisateurEntity = utilisateurRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Utilisateur with id " + id + " not found"));
 
-        return utilisateurMapper.toDTO(utilisateurRepository.findById(id).get());
+        return utilisateurMapper.toDTO(utilisateurEntity);
     }
 
     public boolean isUsernameAvailable(String username)
@@ -86,7 +87,9 @@ public class UtilisateurService
 
     public void updateUtilisateur(Integer id, String nom, String prenom, String email, String username, String password)
     {
-        UtilisateurEntity utilisateurToUpdate = utilisateurRepository.findById(id).get();
+        UtilisateurEntity utilisateurToUpdate = utilisateurRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Utilisateur with id " + id + " not found"));
+
         utilisateurToUpdate.setNom(nom);
         utilisateurToUpdate.setPrenom(prenom);
         utilisateurToUpdate.setMail(email);
@@ -97,6 +100,9 @@ public class UtilisateurService
 
     public void deleteUtilisateur(Integer idUtilisateur)
     {
-        utilisateurRepository.delete(utilisateurRepository.findById(idUtilisateur).get());
+        UtilisateurEntity utilisateurToDelete =utilisateurRepository.findById(idUtilisateur)
+                .orElseThrow(() -> new IllegalArgumentException("Utilisateur with id " + idUtilisateur + " not found"));
+
+        utilisateurRepository.delete(utilisateurToDelete);
     }
 }

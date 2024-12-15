@@ -32,15 +32,12 @@ public class UtilisateurController {
     @GetMapping(value = "/utilisateur/getUtilisateur")
     public ResponseEntity<UtilisateurDTO> getUtilisateur(DataGetUtilisateur data)
     {
-        UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(data.getIdUtilisateur());
-
-        if (utilisateur == null)
-        {
-            return ResponseEntity.notFound().build();
-        }
-        else
-        {
+        try {
+            UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(data.getIdUtilisateur());
             return ResponseEntity.ok(utilisateur);
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -95,14 +92,25 @@ public class UtilisateurController {
         if (id == -1){
             return ResponseEntity.notFound().build();
         }
-        utilisateurService.updateUtilisateur(id, data.getNom(), data.getPrenom(), data.getMail(), data.getUsername(), data.getPassword());
-        return ResponseEntity.ok(new Response("Utilisateur Updated"));
+
+        try {
+            utilisateurService.updateUtilisateur(id, data.getNom(), data.getPrenom(), data.getMail(), data.getUsername(), data.getPassword());
+            return ResponseEntity.ok(new Response("Utilisateur Updated"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping(value = "/utilisateur/deleteUtilisateur")
     public ResponseEntity<Response> deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
     {
-        utilisateurService.deleteUtilisateur(data.getId());
-        return ResponseEntity.ok(new Response("Utilisateur Deleted"));
+        try {
+            utilisateurService.deleteUtilisateur(data.getId());
+            return ResponseEntity.ok(new Response("Utilisateur Deleted"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

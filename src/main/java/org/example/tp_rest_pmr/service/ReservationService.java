@@ -52,16 +52,18 @@ public class ReservationService {
 
     public ReservationDTO getReservationById(Integer pmrId, Integer utilisateurId)
     {
-        ReservationEntity reservation = reservationRepository.findReservationById(new EmbeddedIdReservation(pmrId, utilisateurId));
+        ReservationEntity reservation = reservationRepository.findById(new EmbeddedIdReservation(pmrId, utilisateurId))
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with pmrId " + pmrId + " and utilisateurId " + utilisateurId + " not found"));
+
         return reservationMapper.toDTO(reservation);
     }
 
     public void addReservation(Integer pmrId, Integer utilisateurId, Integer reservation)
     {
         PmrEntity associatedPmr = pmrRepository.findById(pmrId)
-                .orElseThrow(() -> new RuntimeException("pmrId must be a valid id for pmr"));
+                .orElseThrow(() -> new RuntimeException("pmrId " + pmrId + " must be a valid id for pmr"));
         UtilisateurEntity associatedUtilisateur = utilisateurRepository.findById(utilisateurId)
-                .orElseThrow(() -> new RuntimeException("utilisateurId must be a valid id for utilisateur"));
+                .orElseThrow(() -> new RuntimeException("utilisateurId " + utilisateurId + " must be a valid id for utilisateur"));
 
         ReservationEntity nouvelleReservation = ReservationEntity.builder()
                         .id(new EmbeddedIdReservation(associatedPmr.getId(), associatedUtilisateur.getId()))
@@ -75,13 +77,18 @@ public class ReservationService {
 
     public void updateReservation(Integer pmrId, Integer utilisateurId, Integer reservation)
     {
-        ReservationEntity reservationToUpdate = reservationRepository.findById(new EmbeddedIdReservation(pmrId, utilisateurId)).get();
+        ReservationEntity reservationToUpdate = reservationRepository.findById(new EmbeddedIdReservation(pmrId, utilisateurId))
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with pmrId " + pmrId + " and utilisateurId " + utilisateurId + " not found"));
+
         reservationToUpdate.setReservation(reservation);
         reservationRepository.save(reservationToUpdate);
     }
 
     public void deleteReservation(Integer pmrId, Integer utilisateurId)
     {
-        reservationRepository.delete(reservationRepository.findById(new EmbeddedIdReservation(pmrId, utilisateurId)).get());
+        ReservationEntity reservationToDelete = reservationRepository.findById(new EmbeddedIdReservation(pmrId, utilisateurId))
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with pmrId " + pmrId + " and utilisateurId " + utilisateurId + " not found"));
+
+        reservationRepository.delete(reservationToDelete);
     }
 }

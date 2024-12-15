@@ -35,13 +35,11 @@ public class PmrController
     @GetMapping(value = "/pmr/getPmr")
     public ResponseEntity<PmrDTO> getPmr(DataGetPmr data)
     {
-        PmrDTO pmr = pmrService.getPmr(data.getId());
-        if (pmr != null)
-        {
+        try {
+            PmrDTO pmr = pmrService.getPmr(data.getId());
             return ResponseEntity.ok(pmr);
         }
-        else
-        {
+        catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -49,21 +47,36 @@ public class PmrController
     @PostMapping(value = "/pmr/addPmr")
     public ResponseEntity<Response> postAddPmr(@RequestBody DataPostAddPmr data)
     {
-        pmrService.addPmr(data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
-        return ResponseEntity.ok(new Response("Pmr Added"));
+        try {
+            pmrService.addPmr(data.getNom(), data.getQuantite(), data.getDescription(), data.getPointGeo());
+            return ResponseEntity.ok(new Response("Pmr Added"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping(value = "/pmr/updatePmr")
     public ResponseEntity<Response> putUpdatePmr(@RequestBody DataPutUpdatePmr data)
     {
-        pmrService.updatePmr(data.getId(),data.getNom(), data.getQuantite(), data.getDescription(), data.getPoint_geo());
-        return ResponseEntity.ok(new Response("Pmr Updated"));
+        try {
+            pmrService.updatePmr(data.getId(),data.getNom(), data.getQuantite(), data.getDescription(), data.getPoint_geo());
+            return ResponseEntity.ok(new Response("Pmr Updated"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping(value = "/pmr/deletePmr")
     public ResponseEntity<Response> deletePmr(@RequestBody DataDeletePmr data)
     {
-        pmrService.deletePmr(data.getId());
-        return ResponseEntity.ok(new Response("Pmr Deleted"));
+        try {
+            pmrService.deletePmr(data.getId());
+            return ResponseEntity.ok(new Response("Pmr Deleted"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -42,7 +42,10 @@ public class PmrService
 
     public PmrDTO getPmr(Integer id)
     {
-        return pmrMapper.toDTO(pmrRepository.findPmrById(id));
+        PmrEntity pmrEntity = pmrRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with id " + id + " not found"));
+
+        return pmrMapper.toDTO(pmrEntity);
     }
 
     public void addPmr(String nom, Integer quantite, String description, String pointGeo)
@@ -57,7 +60,9 @@ public class PmrService
 
     public void updatePmr(Integer id,String Nom, Integer quantite, String description, String pointGeo)
     {
-        PmrEntity pmrEntity = pmrRepository.findPmrById(id);
+        PmrEntity pmrEntity = pmrRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with id " + id + " not found"));
+
         pmrEntity.setNom(Nom);
         pmrEntity.setQuantite(quantite);
         pmrEntity.setDescription(description);
@@ -67,6 +72,9 @@ public class PmrService
 
     public void deletePmr(Integer id)
     {
-        pmrRepository.delete(pmrRepository.findPmrById(id));
+        PmrEntity pmrEntity = pmrRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with id " + id + " not found"));
+
+        pmrRepository.delete(pmrEntity);
     }
 }

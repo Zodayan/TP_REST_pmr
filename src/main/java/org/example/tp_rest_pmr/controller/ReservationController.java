@@ -34,36 +34,48 @@ public class ReservationController
     @GetMapping(value = "/reservation/getReservation")
     public ResponseEntity<ReservationDTO> getReservation(DataGetReservation data)
     {
-        ReservationDTO reservation = reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId());
-
-        if (reservation == null)
-        {
-            return ResponseEntity.notFound().build();
-        }
-        else
-        {
+        try {
+            ReservationDTO reservation = reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId());
             return ResponseEntity.ok(reservation);
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping(value = "/reservation/addReservation")
     public ResponseEntity<Response> postAddReservation(@RequestBody DataPostAddReservation data)
     {
-        reservationService.addReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
-        return ResponseEntity.ok(new Response("Reservation Added"));
+        try {
+            reservationService.addReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
+            return ResponseEntity.ok(new Response("Reservation Added"));
+        }
+        catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping(value = "/reservation/updateReservation")
     public ResponseEntity<Response> putUpdateReservation(@RequestBody DataPutUpdateReservation data)
     {
-        reservationService.updateReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
-        return ResponseEntity.ok(new Response("Reservation Updated"));
+        try {
+            reservationService.updateReservation(data.getPmrId(), data.getUtilisateurId(), data.getReservation());
+            return ResponseEntity.ok(new Response("Reservation Updated"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping(value = "/reservation/deleteReservation")
     public ResponseEntity<Response> deleteReservation(@RequestBody DataDeleteReservation data)
     {
-        reservationService.deleteReservation(data.getPmrId(), data.getUtilisateurId());
-        return ResponseEntity.ok(new Response("Reservation Deleted"));
+        try {
+            reservationService.deleteReservation(data.getPmrId(), data.getUtilisateurId());
+            return ResponseEntity.ok(new Response("Reservation Deleted"));
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
