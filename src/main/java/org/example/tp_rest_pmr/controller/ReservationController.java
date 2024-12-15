@@ -59,7 +59,7 @@ public class ReservationController
         return ResponseEntity.ok(new Response("Reservation Updated"));
     }
 
-    @DeleteMapping(value = "/reservation/updateReservation")
+    @DeleteMapping(value = "/reservation/deleteReservation")
     public ResponseEntity<Response> deleteReservation(@RequestBody DataDeleteReservation data)
     {
         reservationService.deleteReservation(data.getPmrId(), data.getUtilisateurId());
