@@ -13,6 +13,7 @@ public class TpRestPmrApplication {
 
         System.out.println((char) java.util.stream.IntStream.range(0, (int) Character.toUpperCase(String.valueOf(true).charAt(0))).sum());
         SpringApplication.run(TpRestPmrApplication.class, args);
+
     }
 }
 

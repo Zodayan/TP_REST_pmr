@@ -1,6 +1,7 @@
 package org.example.tp_rest_pmr.dto;
 
 import lombok.*;
+import org.example.tp_rest_pmr.entity.EmbeddedIdReservation;
 import org.example.tp_rest_pmr.entity.ReservationEntity;
 
 import java.util.Set;
@@ -15,5 +16,5 @@ public class PmrDTO {
     private String description;
     private String point_geo;
 
-    private Set<Integer> reservationsId;
+    private Set<EmbeddedIdReservation> reservationsId;
 }

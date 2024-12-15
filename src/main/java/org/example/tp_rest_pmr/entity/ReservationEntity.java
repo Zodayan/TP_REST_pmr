@@ -13,7 +13,6 @@ import lombok.*;
 @ToString
 @Table(name = "reservation")
 public class ReservationEntity {
-
     @EmbeddedId
     private EmbeddedIdReservation id;
 

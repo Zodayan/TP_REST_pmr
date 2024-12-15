@@ -8,8 +8,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {PmrMapper.class, UtilisateurMapper.class})
 public interface ReservationMapper {
+
     ReservationDTO toDTO(ReservationEntity reserv);
 
     ReservationEntity toEntity(ReservationDTO reserv);

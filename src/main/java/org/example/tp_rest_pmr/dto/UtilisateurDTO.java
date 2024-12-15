@@ -1,6 +1,7 @@
 package org.example.tp_rest_pmr.dto;
 
 import lombok.*;
+import org.example.tp_rest_pmr.entity.EmbeddedIdReservation;
 
 import java.util.Set;
 
@@ -15,5 +16,5 @@ public class UtilisateurDTO {
     private String mail;
     private String username;
 
-    private Set<Integer> reservationsId;
+    private Set<EmbeddedIdReservation> reservationsId;
 }

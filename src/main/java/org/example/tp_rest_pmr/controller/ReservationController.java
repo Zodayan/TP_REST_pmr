@@ -26,7 +26,8 @@ public class ReservationController
 
     @GetMapping(value = "/reservation/getAllReservations")
     public ResponseEntity<ArrayList<ReservationDTO>> getAllReservations()
-    {
+    {System.out.println("aled");
+
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
 

@@ -36,6 +36,4 @@ public class PmrEntity {
     @OneToMany(mappedBy = "pmr")
     private Set<ReservationEntity> reservations;
 
-
-
 }

@@ -6,8 +6,15 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ReservationDTO {
+
     private UtilisateurDTO utilisateur;
     private PmrDTO pmr;
+
+    /*
+    private Integer pmr_id;
+    private Integer utilisateur_id;
+    */
+
 
     // Info de reservation
     private Integer reservation;
