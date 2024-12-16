@@ -8,6 +8,7 @@ import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.mapper.UtilisateurMapper;
 import org.example.tp_rest_pmr.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Builder
@@ -105,5 +106,14 @@ public class UtilisateurService
                 .orElseThrow(() -> new IllegalArgumentException("Utilisateur with id " + idUtilisateur + " not found"));
 
         utilisateurRepository.delete(utilisateurToDelete);
+    }
+
+    public int getUserIdByusername(@NonNull String username) {
+        for (UtilisateurEntity utilisateurEntity : utilisateurRepository.findAll()){
+            if (utilisateurEntity.getUsername().equals(username)){
+                return utilisateurEntity.getId();
+            }
+        }
+        return -1;
     }
 }

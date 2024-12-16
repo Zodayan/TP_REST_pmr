@@ -41,6 +41,12 @@ public class UtilisateurController {
         }
     }
 
+    @GetMapping(value = "/utilisateur/getUserIdByusername")
+    public ResponseEntity<Integer> getUserIdByusername(DataCheckUsername data){
+        int id = utilisateurService.getUserIdByusername(data.getUsername());
+        return ResponseEntity.ok(id);
+    }
+
     @GetMapping(value = "/utilisateur/isUsernameAvailable")
     public boolean isUsernameAvailable(DataCheckUsername data)
     {
