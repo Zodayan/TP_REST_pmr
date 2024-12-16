@@ -56,12 +56,13 @@ public class UtilisateurService
 
     public boolean isUsernameAvailable(String username)
     {
+        boolean isAvailable = true;
         for (UtilisateurEntity utilisateurEntity : utilisateurRepository.findAll()){
             if (utilisateurEntity.getUsername().equals(username)){
-                return false;
+                isAvailable = false;
             }
         }
-        return true;
+        return isAvailable;
     }
 
     public boolean checkLogin(String username, String password)

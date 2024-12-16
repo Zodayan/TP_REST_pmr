@@ -1,9 +1,7 @@
 package org.example.tp_rest_pmr.controller;
 
-import org.example.tp_rest_pmr.controller.pmr_controller_data.DataGetPmr;
-import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPostAddPmr;
-import org.example.tp_rest_pmr.controller.pmr_controller_data.DataDeletePmr;
-import org.example.tp_rest_pmr.controller.pmr_controller_data.DataPutUpdatePmr;
+import org.example.tp_rest_pmr.controller.pmr_controller_data.*;
+import org.example.tp_rest_pmr.controller.utilisateur_controller_data.DataCheckUsername;
 import org.example.tp_rest_pmr.dto.PmrDTO;
 import org.example.tp_rest_pmr.service.PmrService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +42,12 @@ public class PmrController
         }
     }
 
+    @GetMapping(value = "/pmr/isPmrCreate")
+    public boolean isPmrCreate(@RequestBody DataCheckCreate data)
+    {
+        return pmrService.isPmrCreate(data.getId());
+    }
+
     @PostMapping(value = "/pmr/addPmr")
     public ResponseEntity<Response> postAddPmr(@RequestBody DataPostAddPmr data)
     {
@@ -55,6 +59,7 @@ public class PmrController
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @PutMapping(value = "/pmr/updatePmr")
     public ResponseEntity<Response> putUpdatePmr(@RequestBody DataPutUpdatePmr data)

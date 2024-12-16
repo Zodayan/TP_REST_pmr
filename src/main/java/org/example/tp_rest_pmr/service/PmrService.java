@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.tp_rest_pmr.dto.PmrDTO;
 import org.example.tp_rest_pmr.entity.PmrEntity;
+import org.example.tp_rest_pmr.entity.UtilisateurEntity;
 import org.example.tp_rest_pmr.mapper.PmrMapper;
 import org.example.tp_rest_pmr.repository.PmrRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,18 @@ public class PmrService
         }
         return pmrDTOs;
     }
+
+    public boolean isPmrCreate(int id)
+    {
+        boolean isPmrCreated = false;
+        for (PmrEntity pmrEntity : pmrRepository.findAll()){
+            if (pmrEntity.getId() == id){
+                isPmrCreated= true;
+            }
+        }
+        return isPmrCreated;
+    }
+
 
     public PmrDTO getPmr(Integer id)
     {
