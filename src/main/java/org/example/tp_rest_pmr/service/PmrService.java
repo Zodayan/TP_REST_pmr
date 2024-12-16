@@ -43,13 +43,10 @@ public class PmrService
 
     public boolean isPmrCreate(int id)
     {
-        boolean isPmrCreated = false;
-        for (PmrEntity pmrEntity : pmrRepository.findAll()){
-            if (pmrEntity.getId() == id){
-                isPmrCreated= true;
-            }
-        }
-        return isPmrCreated;
+        PmrEntity pmrEntity = pmrRepository.findById(id)
+                .orElse(null);
+
+        return pmrEntity != null;
     }
 
 
