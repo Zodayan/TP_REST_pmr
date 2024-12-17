@@ -44,6 +44,10 @@ public class UtilisateurController {
     @GetMapping(value = "/utilisateur/getUserIdByusername")
     public ResponseEntity<Integer> getUserIdByusername(DataCheckUsername data){
         int id = utilisateurService.getUserIdByusername(data.getUsername());
+        if (id == -1){
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.ok(id);
     }
 
@@ -57,26 +61,6 @@ public class UtilisateurController {
     public boolean checkLogin(DataCheckLogin data)
     {
         return utilisateurService.checkLogin(data.getUsername(), data.getPassword());
-    }
-
-    @GetMapping(value = "/utilisateur/getUserIdByusername")
-    public ResponseEntity<UtilisateurDTO> getUserIdByusername(@RequestBody DataGetUserByUsername data)
-    {
-        int id = utilisateurService.getIdbyUsername(data.getUsername());
-        if (id == -1){
-            return ResponseEntity.notFound().build();
-        }
-
-        UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(id);
-
-        if (utilisateur == null)
-        {
-            return ResponseEntity.notFound().build();
-        }
-        else
-        {
-            return ResponseEntity.ok(utilisateur);
-        }
     }
 
     @PostMapping(value = "/utilisateur/addUtilisateur")
