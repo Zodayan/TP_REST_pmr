@@ -48,13 +48,8 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/checkLogin")
-    public boolean checkLogin(@RequestBody DataCheckLogin data)
+    public boolean checkLogin(DataCheckLogin data)
     {
-        try {
-            Thread.sleep(100);
-        }
-        catch (InterruptedException ignored) {}
-
         return utilisateurService.checkLogin(data.getUsername(), data.getPassword());
     }
 
