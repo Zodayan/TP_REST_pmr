@@ -52,7 +52,7 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/isUsernameAvailable")
-    public boolean isUsernameAvailable(@RequestBody DataCheckUsername data)
+    public boolean isUsernameAvailable(DataCheckUsername data)
     {
         return utilisateurService.isUsernameAvailable(data.getUsername());
     }

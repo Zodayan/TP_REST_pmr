@@ -1,9 +1,6 @@
 package org.example.tp_rest_pmr.controller;
 
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataGetReservation;
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPostAddReservation;
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataDeleteReservation;
-import org.example.tp_rest_pmr.controller.reservation_controller_data.DataPutUpdateReservation;
+import org.example.tp_rest_pmr.controller.reservation_controller_data.*;
 import org.example.tp_rest_pmr.dto.ReservationDTO;
 import org.example.tp_rest_pmr.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +21,15 @@ public class ReservationController
         this.reservationService = reservationService;
     }
 
+    @GetMapping(value = "/reservation/getAllReservationsByUsername")
+    public ResponseEntity<ArrayList<ReservationDTO>> getAllReservationsByUsername(DataGetReservationByUsername data)
+    {
+        return ResponseEntity.ok(reservationService.getAllReservationsByUsername(data.getUsername()));
+    }
+
     @GetMapping(value = "/reservation/getAllReservations")
     public ResponseEntity<ArrayList<ReservationDTO>> getAllReservations()
-    {System.out.println("aled");
-
+    {
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
 

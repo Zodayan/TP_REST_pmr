@@ -40,6 +40,18 @@ public class ReservationService {
         this.pmrRepository = pmrRepository;
     }
 
+    public ArrayList<ReservationDTO> getAllReservationsByUsername(String username) {
+        ArrayList<ReservationDTO> reservations = new ArrayList<>();
+        for(ReservationEntity reservation : reservationRepository.findAll())
+        {
+            if (reservation.getUtilisateur().getUsername().equals(username)) {
+
+                reservations.add(reservationMapper.toDTO(reservation));
+            }
+        }
+        return reservations;
+    }
+
     public ArrayList<ReservationDTO> getAllReservations()
     {
         ArrayList<ReservationDTO> reservations = new ArrayList<>();
