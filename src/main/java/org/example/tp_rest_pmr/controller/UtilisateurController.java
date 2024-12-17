@@ -58,6 +58,26 @@ public class UtilisateurController {
         return utilisateurService.checkLogin(data.getUsername(), data.getPassword());
     }
 
+    @GetMapping(value = "/utilisateur/getUserIdByusername")
+    public ResponseEntity<UtilisateurDTO> getUserIdByusername(@RequestBody DataGetUserByUsername data)
+    {
+        int id = utilisateurService.getIdbyUsername(data.getUsername());
+        if (id == -1){
+            return ResponseEntity.notFound().build();
+        }
+
+        UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(id);
+
+        if (utilisateur == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+        else
+        {
+            return ResponseEntity.ok(utilisateur);
+        }
+    }
+
     @PostMapping(value = "/utilisateur/addUtilisateur")
     public ResponseEntity<Response> postAddUtilisateur(@RequestBody DataPostAddUtilisateur data)
     {
