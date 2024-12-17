@@ -30,7 +30,7 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/getUtilisateur")
-    public ResponseEntity<UtilisateurDTO> getUtilisateur(DataGetUtilisateur data)
+    public ResponseEntity<UtilisateurDTO> getUtilisateur(@RequestBody DataGetUtilisateur data)
     {
         try {
             UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(data.getIdUtilisateur());
@@ -42,13 +42,13 @@ public class UtilisateurController {
     }
 
     @GetMapping(value = "/utilisateur/isUsernameAvailable")
-    public boolean isUsernameAvailable(DataCheckUsername data)
+    public boolean isUsernameAvailable(@RequestBody DataCheckUsername data)
     {
         return utilisateurService.isUsernameAvailable(data.getUsername());
     }
 
     @GetMapping(value = "/utilisateur/checkLogin")
-    public boolean checkLogin(DataCheckLogin data)
+    public boolean checkLogin(@RequestBody DataCheckLogin data)
     {
         try {
             Thread.sleep(100);
