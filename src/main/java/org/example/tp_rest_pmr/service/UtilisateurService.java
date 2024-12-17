@@ -55,15 +55,7 @@ public class UtilisateurService
         return utilisateurMapper.toDTO(utilisateurEntity);
     }
 
-    public Integer getIdbyUsername(String username)
-    {
-        for (UtilisateurEntity utilisateurEntity : utilisateurRepository.findAll()){
-            if (utilisateurEntity.getUsername().equals(username)){
-                return utilisateurEntity.getId();
-            }
-        }
-        return -1;
-    }
+
     public boolean isUsernameAvailable(String username)
     {
         boolean isAvailable = true;
