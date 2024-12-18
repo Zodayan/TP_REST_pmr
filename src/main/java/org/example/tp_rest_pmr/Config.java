@@ -12,18 +12,23 @@ import java.util.Arrays;
 import java.util.Collections;
 
 // Classe de configuration
+// Annotation @Configuration : Cette classe est utilisée pour la configuration Spring de l'application.
 @Configuration
 public class Config implements WebMvcConfigurer {
 
-    // Bean gérant la configuration CORS
+    // Méthode addCorsMappings permet de configurer les règles CORS pour l'application
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        //si il y avait une raison particuliere a /pmr/** plutot que directement /**, bien pensr a specifier les routes
-        //utilisateur et reservation au passage
+
+        // Applique les configurations CORS à toutes les routes ("/**")
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200") // Autorisation de l'origine du client Angular
+                // Autorise uniquement les requêtes provenant de l'origine spécifiée (ici, le front-end Angular sur localhost:4200)
+                .allowedOrigins("http://localhost:4200") // Remplacez par l'URL du front-end si nécessaire
+                // Permet uniquement certaines méthodes HTTP pour les requêtes CORS
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                // Permet tous les en-têtes dans les requêtes CORS
                 .allowedHeaders("*")
+                // Permet d'envoyer des informations de connexion ou des cookies avec les requêtes (utile pour l'authentification)
                 .allowCredentials(true);
     }
 }
