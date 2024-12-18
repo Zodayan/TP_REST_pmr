@@ -10,11 +10,12 @@ import org.example.tp_rest_pmr.entity.EmbeddedIdReservation;
 @ToString
 public class DataDeleteReservation
 {
-
+    @NonNull
+    private Integer utilisateurId;
 
     @NonNull
     private Integer pmrId;
 
     @NonNull
-    private Integer utilisateurId;
+    private Integer reservation;
 }

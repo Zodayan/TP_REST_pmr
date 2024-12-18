@@ -73,7 +73,7 @@ public class PmrController
         }
     }
 
-    @DeleteMapping(value = "/pmr/deletePmr")
+    @PostMapping(value = "/pmr/deletePmr")
     public ResponseEntity<Response> deletePmr(@RequestBody DataDeletePmr data)
     {
         try {

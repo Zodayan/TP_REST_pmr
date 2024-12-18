@@ -69,7 +69,7 @@ public class ReservationController
         }
     }
 
-    @DeleteMapping(value = "/reservation/deleteReservation")
+    @PostMapping(value = "/reservation/deleteReservation")
     public ResponseEntity<Response> deleteReservation(@RequestBody DataDeleteReservation data)
     {
         try {
