@@ -73,11 +73,11 @@ public class PmrController
         }
     }
 
-    @PostMapping(value = "/pmr/deletePmr")
-    public ResponseEntity<Response> deletePmr(@RequestBody DataDeletePmr data)
+    @DeleteMapping(value = "/pmr/deletePmr/{pmrId}")
+    public ResponseEntity<Response> deletePmr(@PathVariable Integer pmrId)
     {
         try {
-            pmrService.deletePmr(data.getId());
+            pmrService.deletePmr(pmrId);
             return ResponseEntity.ok(new Response("Pmr Deleted"));
         }
         catch (IllegalArgumentException e) {

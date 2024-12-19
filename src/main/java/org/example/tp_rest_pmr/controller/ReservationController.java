@@ -69,11 +69,11 @@ public class ReservationController
         }
     }
 
-    @PostMapping(value = "/reservation/deleteReservation")
-    public ResponseEntity<Response> deleteReservation(@RequestBody DataDeleteReservation data)
+    @DeleteMapping(value = "/reservation/deleteReservation/{idUtilisateur}/{idPmr}")
+    public ResponseEntity<Response> deleteReservation(@PathVariable Integer idUtilisateur, @PathVariable Integer idPmr)
     {
         try {
-            reservationService.deleteReservation(data.getPmrId(), data.getUtilisateurId());
+            reservationService.deleteReservation(idPmr, idUtilisateur);
             return ResponseEntity.ok(new Response("Reservation Deleted"));
         }
         catch (IllegalArgumentException e) {

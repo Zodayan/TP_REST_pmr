@@ -107,11 +107,11 @@ public class UtilisateurController {
         }
     }
 
-    @DeleteMapping(value = "/utilisateur/deleteUtilisateur")
-    public ResponseEntity<Response> deleteUtilisateur(@RequestBody DataDeleteUtilisateur data)
+    @DeleteMapping(value = "/utilisateur/deleteUtilisateur/{utilisateurId}")
+    public ResponseEntity<Response> deleteUtilisateur(@PathVariable Integer utilisateurId)
     {
         try {
-            utilisateurService.deleteUtilisateur(data.getId());
+            utilisateurService.deleteUtilisateur(utilisateurId);
             return ResponseEntity.ok(new Response("Utilisateur Deleted"));
         }
         catch (IllegalArgumentException e) {
