@@ -29,11 +29,11 @@ public class UtilisateurController {
         return ResponseEntity.ok(utilisateurService.getAllUtilisateurs());
     }
 
-    @GetMapping(value = "/utilisateur/getUtilisateur")
-    public ResponseEntity<UtilisateurDTO> getUtilisateur(@RequestBody DataGetUtilisateur data)
+    @GetMapping(value = "/utilisateur/getUtilisateur/{idUtilisateur}")
+    public ResponseEntity<UtilisateurDTO> getUtilisateur(@PathVariable Integer idUtilisateur)
     {
         try {
-            UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(data.getIdUtilisateur());
+            UtilisateurDTO utilisateur = utilisateurService.getUtilisateur(idUtilisateur);
             return ResponseEntity.ok(utilisateur);
         }
         catch (IllegalArgumentException e) {

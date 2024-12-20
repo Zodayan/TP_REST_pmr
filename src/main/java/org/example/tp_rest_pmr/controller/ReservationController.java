@@ -33,11 +33,11 @@ public class ReservationController
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
-    @GetMapping(value = "/reservation/getReservation")
-    public ResponseEntity<ReservationDTO> getReservation(DataGetReservation data)
+    @GetMapping(value = "/reservation/getReservation/{idUtilisateur}/{idPmr}")
+    public ResponseEntity<ReservationDTO> getReservation(@PathVariable Integer idUtilisateur, @PathVariable Integer idPmr)
     {
         try {
-            ReservationDTO reservation = reservationService.getReservationById(data.getPmrId(), data.getUtilisateurId());
+            ReservationDTO reservation = reservationService.getReservationById(idPmr,idUtilisateur);
             return ResponseEntity.ok(reservation);
         }
         catch (IllegalArgumentException e) {

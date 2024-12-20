@@ -30,11 +30,11 @@ public class PmrController
         return ResponseEntity.ok(pmrService.getAllPmr());
     }
 
-    @GetMapping(value = "/pmr/getPmr")
-    public ResponseEntity<PmrDTO> getPmr(DataGetPmr data)
+    @GetMapping(value = "/pmr/getPmr/{idPmr}")
+    public ResponseEntity<PmrDTO> getPmr(@PathVariable Integer idPmr)
     {
         try {
-            PmrDTO pmr = pmrService.getPmr(data.getId());
+            PmrDTO pmr = pmrService.getPmr(idPmr);
             return ResponseEntity.ok(pmr);
         }
         catch (IllegalArgumentException e) {
